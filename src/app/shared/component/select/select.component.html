@@ -1,0 +1,10 @@
+<label for="" class="section-title mb-0"><h3 class="mt-5">{{title}} :</h3></label>
+    <select class="form-control mt-5" (change)="detectChanges($event)">
+        <option value="all" selected>All Categories</option>
+        <option value="{{option}}" class="dropdown-item" *ngFor="let option of data">{{option}}</option>
+        <!-- <option value="2" class="dropdown-item">option2</option>
+        <option value="3" class="dropdown-item">option3</option>
+        <option value="4" class="dropdown-item">option4</option> -->
+    
+
+    </select>

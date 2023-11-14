@@ -1,0 +1,138 @@
+<div class="cart-section mt-150 mb-150">
+    <form [formGroup]="form">
+        <div class="row">
+                <div class="col-md-3">
+                    <label for="">Start Date</label>
+                    <input type="date" formControlName="start" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="">End Date</label>
+                    <input type="date"  formControlName="end" class="form-control" >
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button class="btn btn-success" (click)="applyFilter()"  >Apply</button>
+                </div>
+        </div>
+    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="cart-table-wrap">
+                
+                    <table class="cart-table">
+                        <thead class="cart-table-head">
+                            <tr class="table-head-row">
+                                
+                                
+                                <th class="product-name">Date</th>
+                               
+                                <th class="product-quantity">Quantity</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-body-row" *ngFor="let item of cartProduct; let index= index">
+                                
+                                <td>{{item.date | date:"longDate"}}</td>
+                                
+                              
+                                <td class="product-quantity">{{item.products.length}}</td>
+                                <td><button class="btn btn-danger" (click)="deleteCart(item.id)">Delete</button></td>
+                                <td><button class="btn btn-primary" data-toggle="modal" data-target="#viewCart" (click)="viewCart(index)">View</button></td>
+                            </tr> 
+        
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade " id="viewCart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 900px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cart Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="cartBox">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th style="width: 25%;">Quantity</th>
+                            <th>Title</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of cartProduct; let i = index">
+                            <td><img src="{{item.item.image}}" alt=""></td>
+                            <td>{{item.item.title}}</td>
+                            <td>{{item.item.price}} L.E</td>
+                            <td>
+                                {{item.quantity}}
+                            </td>
+                            <td>{{item.item.price * item.quantity }} L.E</td>
+                        </tr>
+                    </tbody> 
+                </table>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- <div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="cartBox">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th style="width: 25%;">Quantity</th>
+                            <th>Totle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of cartProduct; let i = index">
+                            <td><img src="{{item.item.image}}" alt=""></td>
+                            <td>{{item.item.title}}</td>
+                            <td>{{item.item.price}} L.E</td>
+                            <td>
+                                {{item.quantity}}
+                            </td>
+                            <td>{{item.item.price * item.quantity }} L.E</td>
+                        </tr>
+                    </tbody> 
+                </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
